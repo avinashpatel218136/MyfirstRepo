@@ -32,11 +32,13 @@ stages:
         solution: '**\*.sln'
         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
     
-    - task: DotNetCoreCLI@2
-      displayName: Build
+
+    - task: PublishBuildArtifacts@1
       inputs:
-        command: 'build'
-        projects: |
+        PathtoPublish: '$(Build.ArtifactsDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+        projects: 
           $(workingDirectory)/*.csproj
         arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
 
