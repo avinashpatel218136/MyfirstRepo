@@ -42,7 +42,7 @@ stages:
     - task: ArchiveFiles@2
       inputs:
         displayName: "Archive files" 
-        rootFolderOrFile: "$(System.ArtifactsDirectory)/publish_output"  
+        rootFolderOrFile: "$(System.ArtifactsDirectory)"  
         includeRootFolder: false
         archiveFile: "$(System.ArtifactsDirectory)/build$(Build.BuildId).zip"
 
